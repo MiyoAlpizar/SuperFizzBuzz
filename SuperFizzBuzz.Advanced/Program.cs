@@ -22,7 +22,7 @@ namespace SuperFizzBuzz.Advanced
             };
 
             superFizzBuzz.SetFizzBuzzes(fizzBuzzes);
-            superFizzBuzz.FizzBuzz(1,2000);
+            superFizzBuzz.FizzBuzz(1,1000);
         }
     }
 }

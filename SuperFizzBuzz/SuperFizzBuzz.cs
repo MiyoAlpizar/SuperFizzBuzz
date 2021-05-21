@@ -37,10 +37,11 @@ namespace SuperFizzBuzz
         /// <summary>
         /// FizzBuzzes the default array numbers from 1 to 100
         /// </summary>
-        public void FizzBuzz()
+        /// <returns>Array of strings with outputs</returns>
+        public string[] FizzBuzz()
         {
             var numbersToFizzBuzz = CreateNumberArray(1, 100);
-            FizzBuzzArray(numbersToFizzBuzz);
+            return FizzBuzzArray(numbersToFizzBuzz);
         }
 
         /// <summary>
@@ -48,10 +49,11 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="from">Number range to start</param>
         /// <param name="to">Number range to end</param>
-        public void FizzBuzz(int from, int to)
+        /// <returns>Array of strings with outputs</returns>
+        public string[] FizzBuzz(int from, int to)
         {
             var numberToFizzBuzz = CreateNumberArray(from, to);
-            FizzBuzzArray(numberToFizzBuzz);
+            return FizzBuzzArray(numberToFizzBuzz);
         }
 
         /// <summary>
@@ -59,9 +61,10 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="numbers">Integer array to FizzBuzz</param>
         /// <param name="fizzBuzzes">List of FizzBuzz to search for, if null default values are  Fizz = 3 And Buzz = 5</param> 
-        public void FizzBuzz(int[] numbers)
+        /// <returns>Array of strings with outputs</returns>
+        public string[] FizzBuzz(int[] numbers)
         {
-            FizzBuzzArray(numbers);
+           return FizzBuzzArray(numbers);
         }
         #endregion
 
@@ -118,13 +121,17 @@ namespace SuperFizzBuzz
         #endregion
 
         #region Private Methdos
+        
         /// <summary>
         /// FizzBuzzes any integer array
         /// </summary>
         /// <param name="arrayNumbers">Integer Array to FizzBuzz</param>
         /// <param name="fizzBuzzes">List of FizzBuzz Tokens to Evaluate</param>
-        private void FizzBuzzArray(int[] numbers)
+        /// <returns>Array of strings with outputs</returns>
+        private string[] FizzBuzzArray(int[] numbers)
         {
+            string[] outputs = new string[numbers.Length];
+
             //If FizzBuzzes to search for is null or empty, we asign the default values
             if (FizzBuzzes?.Any() != true)
             {
@@ -156,13 +163,17 @@ namespace SuperFizzBuzz
                 if (string.IsNullOrWhiteSpace(FizzBuzz))
                 {
                     Console.WriteLine(number.ToString());
+                    outputs[i] = number.ToString();
                 }
                 else
                 {
                     Console.WriteLine(FizzBuzz);
+                    outputs[i] = FizzBuzz;
                 }
 
             }
+
+            return outputs;
         }
 
         /// <summary>
