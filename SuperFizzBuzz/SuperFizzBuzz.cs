@@ -145,6 +145,7 @@ namespace SuperFizzBuzz
 
                 //String to storage and accumulate the tokens found in the modules of multiplesOf
                 var FizzBuzz = "";
+                var isMultipleOf = false;
                 
                 //We loop for the list of FizzBuzz to find matches
                 foreach (var item in FizzBuzzes)
@@ -155,6 +156,7 @@ namespace SuperFizzBuzz
                         //If number and multiple of is 0, we FizzBuzz and break
                         if (number == 0) {
                             FizzBuzz += item.Token;
+                            isMultipleOf = true;
                         }
                         break;
                     }
@@ -166,11 +168,12 @@ namespace SuperFizzBuzz
                     if (number % item.MultiplesOf == 0)
                     {
                         FizzBuzz += item.Token;
+                        isMultipleOf = true;
                     }
                 }
 
                 
-                if (string.IsNullOrWhiteSpace(FizzBuzz))
+                if (!isMultipleOf)
                 {
                     Console.WriteLine(number.ToString());
                     outputs[i] = number.ToString();

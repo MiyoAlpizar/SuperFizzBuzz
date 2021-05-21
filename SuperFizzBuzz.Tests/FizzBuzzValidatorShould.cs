@@ -53,6 +53,7 @@ namespace SuperFizzBuzz.Tests
         [InlineData(154, "Zass")]
         [InlineData(-15, "Wozz")]
         [InlineData(0, "Jazz")]
+        [InlineData(-1, "")]
         public void ReturnCustomTokenWithCustomMultipleOf(int multipleOf, string token)
         {
             //Arrange
