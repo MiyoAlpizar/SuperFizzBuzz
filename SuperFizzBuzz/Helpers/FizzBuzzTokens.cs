@@ -15,7 +15,7 @@ namespace SuperFizzBuzz
         /// <summary>
         /// Default Values 
         /// </summary>
-        private static List<FizzBuzz> _DefaultFizzBuzzes = new List<FizzBuzz>() { 
+        private static readonly List<FizzBuzz> _DefaultFizzBuzzes = new List<FizzBuzz>() { 
              new FizzBuzz { Token = Constants.FIZZ, MultiplesOf = 3},
              new FizzBuzz { Token = Constants.BUZZ, MultiplesOf = 5},
         };
@@ -25,9 +25,8 @@ namespace SuperFizzBuzz
         /// </summary>
         public static List<FizzBuzz> FizzBuzzes { get; private set; } = _DefaultFizzBuzzes;
 
-
         /// <summary>
-        /// Ads new FizzBuzz to the List
+        /// Adds new FizzBuzz to the current list
         /// </summary>
         /// <param name="fizzBuzz">FizzBuzz to Add</param>
         public static void AddFizzBuzz(FizzBuzz fizzBuzz)

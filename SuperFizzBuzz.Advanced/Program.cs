@@ -6,7 +6,7 @@ namespace SuperFizzBuzz.Advanced
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             SuperFizzBuzz superFizzBuzz = new();
             Console.WriteLine("--- Example -12 to 145 ---");
@@ -19,7 +19,9 @@ namespace SuperFizzBuzz.Advanced
                 new FizzBuzz { MultiplesOf = 7, Token = "Buzz" },
                 new FizzBuzz { MultiplesOf = 38, Token = "Bazz" }
             };
-            superFizzBuzz.FizzBuzz(1,1000, fizzBuzzes);
+
+            superFizzBuzz.FizzBuzzes = fizzBuzzes;
+            superFizzBuzz.FizzBuzz(1,999);
         }
     }
 }
