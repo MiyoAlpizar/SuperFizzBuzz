@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFizzBuzz", "SuperFizzBuzz\SuperFizzBuzz.csproj", "{5542D5DC-AB52-41A8-88AF-EA91CBAA8A44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperFizzBuzz", "SuperFizzBuzz\SuperFizzBuzz.csproj", "{5542D5DC-AB52-41A8-88AF-EA91CBAA8A44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFizzBuzz.Models", "SuperFizzBuzz.Models\SuperFizzBuzz.Models.csproj", "{443CB5DB-5C8F-4C80-B3D9-7BA3B5D4BF46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperFizzBuzz.Models", "SuperFizzBuzz.Models\SuperFizzBuzz.Models.csproj", "{443CB5DB-5C8F-4C80-B3D9-7BA3B5D4BF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFizzBuzz.Utilities", "SuperFizzBuzz.Utilities\SuperFizzBuzz.Utilities.csproj", "{4EB5A0EB-E207-4BCD-B0BF-32CC1112974E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperFizzBuzz.Utilities", "SuperFizzBuzz.Utilities\SuperFizzBuzz.Utilities.csproj", "{4EB5A0EB-E207-4BCD-B0BF-32CC1112974E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFizzBuzz.Clasic", "SuperFizzBuzz.Clasic\SuperFizzBuzz.Clasic.csproj", "{DFD1BA56-8510-448E-9C17-04BD173291A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperFizzBuzz.Clasic", "SuperFizzBuzz.Clasic\SuperFizzBuzz.Clasic.csproj", "{DFD1BA56-8510-448E-9C17-04BD173291A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFizzBuzz.Advanced", "SuperFizzBuzz.Advanced\SuperFizzBuzz.Advanced.csproj", "{BD48760F-49E4-4C07-B4B9-16E5C8F56CE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperFizzBuzz.Advanced", "SuperFizzBuzz.Advanced\SuperFizzBuzz.Advanced.csproj", "{BD48760F-49E4-4C07-B4B9-16E5C8F56CE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperFizzBuzz.Tests", "SuperFizzBuzz.Tests\SuperFizzBuzz.Tests.csproj", "{35EBE744-9810-4DA4-AE43-A758B9BEA959}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BD48760F-49E4-4C07-B4B9-16E5C8F56CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD48760F-49E4-4C07-B4B9-16E5C8F56CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD48760F-49E4-4C07-B4B9-16E5C8F56CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35EBE744-9810-4DA4-AE43-A758B9BEA959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35EBE744-9810-4DA4-AE43-A758B9BEA959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35EBE744-9810-4DA4-AE43-A758B9BEA959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35EBE744-9810-4DA4-AE43-A758B9BEA959}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

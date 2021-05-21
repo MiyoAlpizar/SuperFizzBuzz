@@ -104,7 +104,7 @@ namespace SuperFizzBuzz
             }
 
             //Clears the current list
-            FizzBuzzes.Clear();
+            FizzBuzzes = new List<FizzBuzz>();
             foreach (var fizzBuzz in fizzBuzzes)
             {
                 AddFizzBuzz(fizzBuzz);
@@ -149,9 +149,19 @@ namespace SuperFizzBuzz
                 //We loop for the list of FizzBuzz to find matches
                 foreach (var item in FizzBuzzes)
                 {
+                    //We can´t divide by 0, so in case of multipleOf is 0 we break
+                    if (item.MultiplesOf == 0)
+                    {
+                        //If number and multiple of is 0, we FizzBuzz and break
+                        if (number == 0) {
+                            FizzBuzz += item.Token;
+                        }
+                        break;
+                    }
+
                     //We can´t divide by 0, so in case of 0, we break
                     if (number == 0) break;
-                    
+
                     //If module is 0, we just found a token to show instade of the number
                     if (number % item.MultiplesOf == 0)
                     {
