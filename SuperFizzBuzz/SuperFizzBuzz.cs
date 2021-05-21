@@ -12,10 +12,10 @@ namespace SuperFizzBuzz
     {
         #region Constructor
         /// <summary>
-        /// Initializes a new instance of SuperFizzBuzz
-        /// <param name="fizzBuzzes">List of FizzBuzzes to search for</param> 
+        /// Initializes a new instance of SuperFizzBuzz.
         /// If null or empty, will take the default values. Fizz = 3 And Buzz = 5
         /// </summary>
+        /// <param name="fizzBuzzes">List of FizzBuzzes to search for</param> 
         public SuperFizzBuzz(List<FizzBuzz> fizzBuzzes = null)
         {
             if (FizzBuzzes != null)

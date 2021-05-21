@@ -54,16 +54,16 @@ namespace SuperFizzBuzz.Tests
         [InlineData(-15, "Wozz")]
         [InlineData(0, "Jazz")]
         [InlineData(-1, "")]
+        [InlineData(1000, "Doug")]
         public void ReturnCustomTokenWithCustomMultipleOf(int multipleOf, string token)
         {
             //Arrange
-            SuperFizzBuzz superFizzBuzz = new();
-
-            superFizzBuzz.SetFizzBuzzes(new List<FizzBuzz>() { 
+            var listFizzBuzzes = new List<FizzBuzz>() {
                 new FizzBuzz { MultiplesOf = multipleOf, Token = token}
-            });
-            
-            
+            };
+
+            SuperFizzBuzz superFizzBuzz = new(listFizzBuzzes);
+
             int valueToLook = multipleOf;
             int rangeStart = Math.Min(0, multipleOf);
             int rangeEnd = Math.Max(10, multipleOf + 1);
