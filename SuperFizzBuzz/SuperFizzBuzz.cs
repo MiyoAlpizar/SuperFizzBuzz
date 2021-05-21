@@ -18,7 +18,7 @@ namespace SuperFizzBuzz
         /// <param name="fizzBuzzes">List of FizzBuzzes to search for</param> 
         public SuperFizzBuzz(List<FizzBuzz> fizzBuzzes = null)
         {
-            if (fizzBuzzes?.Any() != true)
+            if (fizzBuzzes?.Any() == true)
             {
                 FizzBuzzes = fizzBuzzes;
             }
