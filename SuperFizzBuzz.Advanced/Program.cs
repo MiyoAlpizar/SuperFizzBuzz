@@ -20,7 +20,7 @@ namespace SuperFizzBuzz.Advanced
                 new FizzBuzz { MultiplesOf = 38, Token = "Bazz" }
             };
 
-            superFizzBuzz.FizzBuzzes = fizzBuzzes;
+            superFizzBuzz.SetFizzBuzzes(fizzBuzzes);
             superFizzBuzz.FizzBuzz(1,999);
         }
     }

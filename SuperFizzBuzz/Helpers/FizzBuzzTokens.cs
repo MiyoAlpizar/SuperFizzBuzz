@@ -21,42 +21,8 @@ namespace SuperFizzBuzz
         };
 
         /// <summary>
-        /// Gets the current list of FizzBuzz
+        /// Gets the default list of FizzBuzz
         /// </summary>
-        public static List<FizzBuzz> FizzBuzzes { get; private set; } = _DefaultFizzBuzzes;
-
-        /// <summary>
-        /// Adds new FizzBuzz to the current list
-        /// </summary>
-        /// <param name="fizzBuzz">FizzBuzz to Add</param>
-        public static void AddFizzBuzz(FizzBuzz fizzBuzz)
-        {
-            //We check if FizzBuzz is unique
-            var exists = FizzBuzzes.Find(x => x.Equals(fizzBuzz)) != null;
-            
-            //If is unique
-            if(!exists)
-            {
-                FizzBuzzes.Add(fizzBuzz);
-            }else
-            {
-                throw new Exception("Division number and Token must be uniques");
-            }
-        }
-
-        /// <summary>
-        /// Sets new list with custom FizzBuzzes to search for
-        /// </summary>
-        /// <param name="fizzBuzzes">List<FizzBuzz></param>
-        public static void SetFizzBuzzes(List<FizzBuzz> fizzBuzzes)
-        {
-            //Clears the current list
-            FizzBuzzes.Clear();
-            foreach (var fizzBuzz in fizzBuzzes)
-            {
-                AddFizzBuzz(fizzBuzz);
-            }
-        } 
-
+        public static List<FizzBuzz> DefaultFizzBuzzes { get; private set; } = _DefaultFizzBuzzes;
     }
 }

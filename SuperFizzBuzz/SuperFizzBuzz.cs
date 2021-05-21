@@ -18,15 +18,22 @@ namespace SuperFizzBuzz
         /// </summary>
         public SuperFizzBuzz(List<FizzBuzz> fizzBuzzes = null)
         {
-            FizzBuzzes = fizzBuzzes;
+            if (FizzBuzzes != null)
+            {
+                FizzBuzzes = fizzBuzzes;
+            }
         }
         #endregion
 
         #region Properties
-        public List<FizzBuzz> FizzBuzzes { get; set; }
+        /// <summary>
+        /// Gets the current List of FizzBuzzes that is used to search for
+        /// </summary>
+        public List<FizzBuzz> FizzBuzzes { get; private set; } = FizzBuzzTokens.DefaultFizzBuzzes;
         #endregion
 
-        #region Public Methods
+        #region FizzBuzz Public Methods
+
         /// <summary>
         /// FizzBuzzes the default array numbers from 1 to 100
         /// </summary>
@@ -58,6 +65,55 @@ namespace SuperFizzBuzz
         }
         #endregion
 
+        #region Set FizzBuzz Methods
+        /// <summary>
+        /// Adds new FizzBuzz to the current list
+        /// </summary>
+        /// <param name="fizzBuzz">FizzBuzz to add to the list, if any of the MultiplesOf value or the Token repeats, 
+        /// it will throw an exception</param>
+        public void AddFizzBuzz(FizzBuzz fizzBuzz)
+        {
+            //We check if FizzBuzz is unique
+            var exists = FizzBuzzes.Find(x => x.Equals(fizzBuzz)) != null;
+
+            //If is unique
+            if (!exists)
+            {
+                FizzBuzzes.Add(fizzBuzz);
+            }
+            else
+            {
+                throw new Exception("Division number and Token must be uniques");
+            }
+        }
+
+        /// <summary>
+        ///  Sets new list with custom FizzBuzzes to search for
+        /// </summary>
+        /// <param name="fizzBuzzes">List<FizzBuzz> to set, if any of the MultiplesOf value or the Token repeats, 
+        /// it will throw an exception</param>
+        public void SetFizzBuzzes(List<FizzBuzz> fizzBuzzes)
+        {
+            //Clears the current list
+            if (fizzBuzzes?.Any() != true)
+            {
+                return;
+            }
+            FizzBuzzes.Clear();
+            foreach (var fizzBuzz in fizzBuzzes)
+            {
+                AddFizzBuzz(fizzBuzz);
+            }
+        }
+
+        /// <summary>
+        /// Sets the default FizzBuzzes List - Fizz = 3, Buzz = 5
+        /// </summary>
+        public void SetDefaultFizzBuzz()
+        {
+            FizzBuzzes = FizzBuzzTokens.DefaultFizzBuzzes;
+        }
+        #endregion
 
         #region Private Methdos
         /// <summary>
@@ -67,28 +123,34 @@ namespace SuperFizzBuzz
         /// <param name="fizzBuzzes">List of FizzBuzz Tokens to Evaluate</param>
         private void FizzBuzzArray(int[] numbers)
         {
-            //If FizzBuzzes to search for is null, we asign the default values
+            //If FizzBuzzes to search for is null or empty, we asign the default values
             if (FizzBuzzes?.Any() != true)
             {
-                FizzBuzzes = FizzBuzzTokens.FizzBuzzes;
+                FizzBuzzes = FizzBuzzTokens.DefaultFizzBuzzes;
             }
-            //Orders the array number in order to optimize the search loop
-            //List<int> numbers = arrayNumbers.OrderBy(x => x).ToList();
-
+           
             for (int i = 0; i < numbers.Length; i++)
             {
+                //Number in array to evaluate
                 var number = numbers[i];
-                var FizzBuzz = "";
 
+                //String to storage and accumulate the tokens found in the modules of multiplesOf
+                var FizzBuzz = "";
+                
+                //We loop for the list of FizzBuzz to find matches
                 foreach (var item in FizzBuzzes)
                 {
+                    //We can´t divide by 0, so in case of 0, we break
                     if (number == 0) break;
+                    
+                    //If module is 0, we just found a token to show instade of the number
                     if (number % item.MultiplesOf == 0)
                     {
                         FizzBuzz += item.Token;
                     }
                 }
 
+                
                 if (string.IsNullOrWhiteSpace(FizzBuzz))
                 {
                     Console.WriteLine(number.ToString());
