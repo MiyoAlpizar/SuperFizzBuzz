@@ -4,10 +4,14 @@ namespace SuperFizzBuzz.Clasic
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             SuperFizzBuzz superFizzBuzz = new();
-            superFizzBuzz.FizzBuzz();
+            var outputs = superFizzBuzz.FizzBuzz();
+            foreach (var item in outputs)
+            {
+                Console.WriteLine(item.Value.Output);
+            }
         }
     }
 }

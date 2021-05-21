@@ -1,6 +1,7 @@
 ﻿using SuperFizzBuzz.Models.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SuperFizzBuzz.Tests
@@ -17,11 +18,11 @@ namespace SuperFizzBuzz.Tests
             int rangeEnd = valueToLook + 1;
             int indexToLook = valueToLook - 1;
             string expected = "Fizz";
-            
+
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs[indexToLook];
-            
+            var value = outputs.Where(x => x.Value.Number == valueToLook).FirstOrDefault().Value.Output;
+
             //Assert
             Assert.Equal(expected, value);
 
@@ -35,12 +36,11 @@ namespace SuperFizzBuzz.Tests
             int valueToLook = 5;
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
-            int indexToLook = valueToLook - 1;
             string expected = "Buzz";
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs[indexToLook];
+            var value = outputs.Where(x => x.Value.Number == valueToLook).FirstOrDefault().Value.Output;
 
             //Assert
             Assert.Equal(expected, value);
@@ -67,12 +67,12 @@ namespace SuperFizzBuzz.Tests
             int valueToLook = multipleOf;
             int rangeStart = Math.Min(0, multipleOf);
             int rangeEnd = Math.Max(10, multipleOf + 1);
-            int indexToLook = Math.Abs(valueToLook) + rangeStart;
             string expected = token;
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs[indexToLook];
+            var value = outputs.Where(x => x.Value.Number == valueToLook).FirstOrDefault().Value.Output;
+
 
             //Assert
             Assert.Equal(expected, value);

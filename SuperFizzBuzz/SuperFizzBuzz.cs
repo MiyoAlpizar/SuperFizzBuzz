@@ -32,13 +32,13 @@ namespace SuperFizzBuzz
         public List<FizzBuzz> FizzBuzzes { get; private set; } = FizzBuzzTokens.DefaultFizzBuzzes;
         #endregion
 
-        #region FizzBuzz Public Methods
+        #region  Public Methods
 
         /// <summary>
         /// FizzBuzzes the default array numbers from 1 to 100
         /// </summary>
-        /// <returns>Array of strings with outputs</returns>
-        public string[] FizzBuzz()
+        /// <returns>Dictionary of FizzBuzzOutput</returns>
+        public Dictionary<int, FizzBuzzOutput> FizzBuzz()
         {
             var numbersToFizzBuzz = CreateNumberArray(1, 100);
             return FizzBuzzArray(numbersToFizzBuzz);
@@ -49,8 +49,8 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="from">Number range to start</param>
         /// <param name="to">Number range to end</param>
-        /// <returns>Array of strings with outputs</returns>
-        public string[] FizzBuzz(int from, int to)
+        /// <returns>Dictionary of FizzBuzzOutput</returns>
+        public Dictionary<int, FizzBuzzOutput> FizzBuzz(int from, int to)
         {
             var numberToFizzBuzz = CreateNumberArray(from, to);
             return FizzBuzzArray(numberToFizzBuzz);
@@ -61,8 +61,8 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="numbers">Integer array to FizzBuzz</param>
         /// <param name="fizzBuzzes">List of FizzBuzz to search for, if null default values are  Fizz = 3 And Buzz = 5</param> 
-        /// <returns>Array of strings with outputs</returns>
-        public string[] FizzBuzz(int[] numbers)
+        /// <returns>Dictionary of FizzBuzzOutput</returns>
+        public Dictionary<int, FizzBuzzOutput> FizzBuzz(int[] numbers)
         {
            return FizzBuzzArray(numbers);
         }
@@ -121,23 +121,25 @@ namespace SuperFizzBuzz
         #endregion
 
         #region Private Methdos
-        
+
         /// <summary>
         /// FizzBuzzes any integer array
         /// </summary>
         /// <param name="arrayNumbers">Integer Array to FizzBuzz</param>
         /// <param name="fizzBuzzes">List of FizzBuzz Tokens to Evaluate</param>
-        /// <returns>Array of strings with outputs</returns>
-        private string[] FizzBuzzArray(int[] numbers)
+        /// <returns>Dictionary of FizzBuzzOutput</returns>
+        private Dictionary<int, FizzBuzzOutput> FizzBuzzArray(int[] numbers)
         {
-            string[] outputs = new string[numbers.Length];
 
+            Dictionary<int, FizzBuzzOutput> outputs = new Dictionary<int, FizzBuzzOutput>();
+            
             //If FizzBuzzes to search for is null or empty, we asign the default values
             if (FizzBuzzes?.Any() != true)
             {
                 FizzBuzzes = FizzBuzzTokens.DefaultFizzBuzzes;
             }
-           
+
+            #region loop logic
             for (int i = 0; i < numbers.Length; i++)
             {
                 //Number in array to evaluate
@@ -145,7 +147,7 @@ namespace SuperFizzBuzz
 
                 //String to storage and accumulate the tokens found in the modules of multiplesOf
                 var FizzBuzz = "";
-                var isMultipleOf = false;
+                var coincidences = 0;
                 
                 //We loop for the list of FizzBuzz to find matches
                 foreach (var item in FizzBuzzes)
@@ -156,7 +158,7 @@ namespace SuperFizzBuzz
                         //If number and multiple of is 0, we FizzBuzz
                         if (number == 0) {
                             FizzBuzz += item.Token;
-                            isMultipleOf = true;
+                            coincidences++;
                         }
                         break;
                     }
@@ -168,23 +170,20 @@ namespace SuperFizzBuzz
                     if (number % item.MultiplesOf == 0)
                     {
                         FizzBuzz += item.Token;
-                        isMultipleOf = true;
+                        coincidences++;
                     }
                 }
 
-                
-                if (!isMultipleOf)
-                {
-                    Console.WriteLine(number.ToString());
-                    outputs[i] = number.ToString();
-                }
+                string FizzBuzzOrNumber;
+                if (coincidences==0)
+                    FizzBuzzOrNumber = number.ToString();
                 else
-                {
-                    Console.WriteLine(FizzBuzz);
-                    outputs[i] = FizzBuzz;
-                }
+                    FizzBuzzOrNumber = FizzBuzz;
+
+                outputs[i] = new FizzBuzzOutput { Output = FizzBuzzOrNumber, Coincidences = coincidences, Number = number };
 
             }
+            #endregion
 
             return outputs;
         }
