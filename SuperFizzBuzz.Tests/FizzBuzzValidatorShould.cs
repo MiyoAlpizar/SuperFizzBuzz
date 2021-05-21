@@ -66,7 +66,7 @@ namespace SuperFizzBuzz.Tests
             
             int valueToLook = multipleOf;
             int rangeStart = Math.Min(0, multipleOf);
-            int rangeEnd = Math.Max(100, multipleOf + 1);
+            int rangeEnd = Math.Max(10, multipleOf + 1);
             int indexToLook = Math.Abs(valueToLook) + rangeStart;
             string expected = token;
 
@@ -77,6 +77,38 @@ namespace SuperFizzBuzz.Tests
             //Assert
             Assert.Equal(expected, value);
 
+        }
+
+        [Fact]
+        public void RaiseErrorWhenMultiplesOfRepites()
+        {
+            //Arrange
+            SuperFizzBuzz superFizzBuzz = new();
+            List<FizzBuzz> fizzBuzzes = new()
+            {
+                new FizzBuzz { MultiplesOf = 14, Token = "Duck" },
+                new FizzBuzz { MultiplesOf = 14, Token = "Cat" }
+            };
+            //Act
+
+            //Assert
+            Assert.Throws<Exception>(() => superFizzBuzz.SetFizzBuzzes(fizzBuzzes));
+        }
+
+        [Fact]
+        public void RaiseErrorWhenTokenRepites()
+        {
+            //Arrange
+            SuperFizzBuzz superFizzBuzz = new();
+            List<FizzBuzz> fizzBuzzes = new()
+            {
+                new FizzBuzz { MultiplesOf = 84, Token = "Dog" },
+                new FizzBuzz { MultiplesOf = 12, Token = "Dog" }
+            };
+            //Act
+
+            //Assert
+            Assert.Throws<Exception>(() => superFizzBuzz.SetFizzBuzzes(fizzBuzzes));
         }
     }
 }

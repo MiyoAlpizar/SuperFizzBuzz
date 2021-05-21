@@ -153,7 +153,7 @@ namespace SuperFizzBuzz
                     //We can´t divide by 0, so in case of multipleOf is 0 we break
                     if (item.MultiplesOf == 0)
                     {
-                        //If number and multiple of is 0, we FizzBuzz and break
+                        //If number and multiple of is 0, we FizzBuzz
                         if (number == 0) {
                             FizzBuzz += item.Token;
                             isMultipleOf = true;
@@ -164,7 +164,7 @@ namespace SuperFizzBuzz
                     //We can´t divide by 0, so in case of 0, we break
                     if (number == 0) break;
 
-                    //If module is 0, we just found a token to show instade of the number
+                    //If residual is 0, we just found a token to show instade of the number
                     if (number % item.MultiplesOf == 0)
                     {
                         FizzBuzz += item.Token;
