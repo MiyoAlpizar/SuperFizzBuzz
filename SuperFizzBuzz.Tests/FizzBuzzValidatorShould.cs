@@ -17,9 +17,9 @@ namespace SuperFizzBuzz.Tests
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
             int indexToLook = valueToLook - 1;
-            int countExpcted = 1;
-            string outputExpected = "Fizz";
-            
+            int expectedCount = 1;
+            string expectedOutput = "Fizz";
+
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
             var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
@@ -27,8 +27,8 @@ namespace SuperFizzBuzz.Tests
             
             
             //Assert
-            Assert.Equal(countExpcted, values.Count);
-            Assert.Equal(outputExpected, value);
+            Assert.Equal(expectedCount, values.Count);
+            Assert.Equal(expectedOutput, value);
 
         }
 
@@ -41,8 +41,8 @@ namespace SuperFizzBuzz.Tests
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
             int indexToLook = valueToLook - 1;
-            int countExpcted = 1;
-            string outputExpected = "Buzz";
+            int expectedCount = 1;
+            string expectedOutput = "Buzz";
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
@@ -51,8 +51,8 @@ namespace SuperFizzBuzz.Tests
 
 
             //Assert
-            Assert.Equal(countExpcted, values.Count);
-            Assert.Equal(outputExpected, value);
+            Assert.Equal(expectedCount, values.Count);
+            Assert.Equal(expectedOutput, value);
 
         }
 
@@ -74,14 +74,15 @@ namespace SuperFizzBuzz.Tests
             SuperFizzBuzz superFizzBuzz = new(listFizzBuzzes);
 
             int valueToLook = multipleOf;
+
             //We make sure the start range is smaller than multipleOf 
             int rangeStart = Math.Min(0, multipleOf);
 
             //We make sure the end range is greater than multipleOf 
             int rangeEnd = multipleOf + 1;
             
-            int countExpcted = 1;
-            string outputExpected = token;
+            int exptectedCount = 1;
+            string expectedOutput = token;
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
@@ -90,9 +91,31 @@ namespace SuperFizzBuzz.Tests
 
 
             //Assert
-            Assert.Equal(countExpcted, values.Count);
-            Assert.Equal(outputExpected, value);
+            Assert.Equal(exptectedCount, values.Count);
+            Assert.Equal(expectedOutput, value);
 
+        }
+
+        [Fact]
+        public void ReturnOneTokenWithMultipleMatches()
+        {
+            //Arrange
+            var listFizzBuzzes = new List<FizzBuzz>() {
+                new FizzBuzz { MultiplesOf = 3, Token = "Cat"},
+                new FizzBuzz { MultiplesOf = 6, Token = "Dog"}
+            };
+            SuperFizzBuzz superFizzBuzz = new(listFizzBuzzes);
+            int exptectedCount = 1;
+            string expectedOutput = "CatDog";
+
+            //Act
+            var outputs = superFizzBuzz.FizzBuzz(1, 6);
+            var multipleMatchesOutputs = outputs.Where(x => x.Value.Coincidences > 1).ToList();
+            var value = multipleMatchesOutputs.FirstOrDefault().Value.Output;
+
+            //Assert
+            Assert.Equal(expectedOutput, value);
+            Assert.Equal(exptectedCount, multipleMatchesOutputs.Count);
         }
 
         [Fact]
