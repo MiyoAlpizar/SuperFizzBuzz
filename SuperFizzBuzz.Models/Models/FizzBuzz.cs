@@ -18,7 +18,7 @@ namespace SuperFizzBuzz.Models.Models
         }
 
         /// <summary>
-        /// Name of token to show. Don´t like Fizz?, Don´t like Fizz Buzz?
+        /// Name of token to show. Don´t like Fizz?, Don´t like Buzz?
         /// set your own token
         /// </summary>
         public string Token { get; set; }

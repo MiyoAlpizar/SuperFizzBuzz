@@ -15,21 +15,30 @@ namespace SuperFizzBuzz.Advanced
         
         static void MakeFizzBuzz()
         {
+            var startRange = -12;
+            var endRange = 145;
+
+            //Lista of FizzBuzzes To Search for
             List<FizzBuzz> fizzBuzzes = new()
             {
                 new FizzBuzz { MultiplesOf = 3, Token = "Fizz" },
                 new FizzBuzz { MultiplesOf = 7, Token = "Buzz" },
                 new FizzBuzz { MultiplesOf = 38, Token = "Bazz" }
             };
+
+            //Init new instance with List of FizzBuzzess
             SuperFizzBuzz superFizzBuzz = new(fizzBuzzes);
 
-            var outputs = superFizzBuzz.FizzBuzz(-12, 145);
-            Console.WriteLine("--- Numbers to -12 to 145 ---");
+            //Get Dictionary of FizzBuzzesOutputs
+            var outputs = superFizzBuzz.FizzBuzz(startRange, endRange);
+            
+            
+            Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---");
             foreach (var item in outputs)
             {
                 Console.WriteLine(item.Value.Output);
             }
-            Console.WriteLine("--- Numbers to -12 to 145 ---\n");
+            Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---\n");
 
 
             var moreThanOnce = outputs.Where(x => x.Value.Coincidences > 1);
