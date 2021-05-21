@@ -9,6 +9,7 @@ namespace SuperFizzBuzz.Advanced
         static void Main(string[] _)
         {
             SuperFizzBuzz superFizzBuzz = new();
+
             Console.WriteLine("--- Example -12 to 145 ---");
             superFizzBuzz.FizzBuzz(-12, 145);
             Console.WriteLine("--- Example -12 to 145 ---\n");
@@ -21,7 +22,7 @@ namespace SuperFizzBuzz.Advanced
             };
 
             superFizzBuzz.SetFizzBuzzes(fizzBuzzes);
-            superFizzBuzz.FizzBuzz(1,999);
+            superFizzBuzz.FizzBuzz(1,2000);
         }
     }
 }

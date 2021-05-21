@@ -10,6 +10,14 @@ namespace SuperFizzBuzz.Models.Models
     public class FizzBuzz : IEquatable<FizzBuzz>
     {
         /// <summary>
+        /// Initializes a new class of FizzBuzz
+        /// </summary>
+        public FizzBuzz()
+        {
+
+        }
+
+        /// <summary>
         /// Name of token to show. Don´t like Fizz?, Don´t like Fizz Buzz?
         /// set your own token
         /// </summary>

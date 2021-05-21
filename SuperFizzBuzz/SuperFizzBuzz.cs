@@ -90,15 +90,17 @@ namespace SuperFizzBuzz
         /// <summary>
         ///  Sets new list with custom FizzBuzzes to search for
         /// </summary>
-        /// <param name="fizzBuzzes">List<FizzBuzz> to set, if any of the MultiplesOf value or the Token repeats, 
+        /// <param name="fizzBuzzes">List of FizzBuzz to set, if any of the MultiplesOf value or the Token repeats, 
         /// it will throw an exception</param>
         public void SetFizzBuzzes(List<FizzBuzz> fizzBuzzes)
         {
-            //Clears the current list
+            //If null or empty, will return
             if (fizzBuzzes?.Any() != true)
             {
                 return;
             }
+
+            //Clears the current list
             FizzBuzzes.Clear();
             foreach (var fizzBuzz in fizzBuzzes)
             {
