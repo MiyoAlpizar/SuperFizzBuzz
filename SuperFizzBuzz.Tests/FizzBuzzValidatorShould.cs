@@ -9,7 +9,7 @@ namespace SuperFizzBuzz.Tests
     public class FizzBuzzValidatorShould
     {
         [Fact]
-        public void ReturnFizzWhen3()
+        public void ReturnOneOutputWithFizzWhen3()
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
@@ -17,33 +17,42 @@ namespace SuperFizzBuzz.Tests
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
             int indexToLook = valueToLook - 1;
-            string expected = "Fizz";
-
+            int countExpcted = 1;
+            string outputExpected = "Fizz";
+            
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs.Where(x => x.Value.Number == valueToLook).FirstOrDefault().Value.Output;
-
+            var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
+            var value = values.FirstOrDefault().Value.Output;
+            
+            
             //Assert
-            Assert.Equal(expected, value);
+            Assert.Equal(countExpcted, values.Count);
+            Assert.Equal(outputExpected, value);
 
         }
 
         [Fact]
-        public void ReturnBuzzWhen5()
+        public void ReturnOneOutputWithBuzzWhen5()
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
             int valueToLook = 5;
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
-            string expected = "Buzz";
+            int indexToLook = valueToLook - 1;
+            int countExpcted = 1;
+            string outputExpected = "Buzz";
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs.Where(x => x.Value.Number == valueToLook).FirstOrDefault().Value.Output;
+            var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
+            var value = values.FirstOrDefault().Value.Output;
+
 
             //Assert
-            Assert.Equal(expected, value);
+            Assert.Equal(countExpcted, values.Count);
+            Assert.Equal(outputExpected, value);
 
         }
 
@@ -65,17 +74,24 @@ namespace SuperFizzBuzz.Tests
             SuperFizzBuzz superFizzBuzz = new(listFizzBuzzes);
 
             int valueToLook = multipleOf;
+            //We make sure the start range is smaller than multipleOf 
             int rangeStart = Math.Min(0, multipleOf);
-            int rangeEnd = Math.Max(10, multipleOf + 1);
-            string expected = token;
+
+            //We make sure the end range is greater than multipleOf 
+            int rangeEnd = multipleOf + 1;
+            
+            int countExpcted = 1;
+            string outputExpected = token;
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs.Where(x => x.Value.Number == valueToLook).FirstOrDefault().Value.Output;
+            var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
+            var value = values.FirstOrDefault().Value.Output;
 
 
             //Assert
-            Assert.Equal(expected, value);
+            Assert.Equal(countExpcted, values.Count);
+            Assert.Equal(outputExpected, value);
 
         }
 
