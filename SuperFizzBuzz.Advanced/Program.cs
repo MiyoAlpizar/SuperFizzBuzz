@@ -36,16 +36,16 @@ namespace SuperFizzBuzz.Advanced
             Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---");
             foreach (var item in outputs)
             {
-                Console.WriteLine(item.Value.Output);
+                Console.WriteLine(item.Output);
             }
             Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---\n");
 
 
-            var moreThanOnce = outputs.Where(x => x.Value.Coincidences > 1);
+            var moreThanOnce = outputs.Where(x => x.Coincidences > 1);
             Console.WriteLine("--- Combination of Tokens that matches more than once ---");
             foreach (var item in moreThanOnce)
             {
-                Console.WriteLine($"{item.Value.Number} {item.Value.Output}");
+                Console.WriteLine($"{item.Number} {item.Output}");
             }
             Console.WriteLine("--- Combination of Tokens that matches more than once ---");
 

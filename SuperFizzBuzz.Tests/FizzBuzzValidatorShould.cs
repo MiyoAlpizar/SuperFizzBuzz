@@ -22,8 +22,8 @@ namespace SuperFizzBuzz.Tests
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
-            var value = values.FirstOrDefault().Value.Output;
+            var values = outputs.Where(x => x.Number == valueToLook).ToList();
+            var value = values.FirstOrDefault().Output;
             
             
             //Assert
@@ -46,8 +46,8 @@ namespace SuperFizzBuzz.Tests
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
-            var value = values.FirstOrDefault().Value.Output;
+            var values = outputs.Where(x => x.Number == valueToLook).ToList();
+            var value = values.FirstOrDefault().Output;
 
 
             //Assert
@@ -86,8 +86,8 @@ namespace SuperFizzBuzz.Tests
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var values = outputs.Where(x => x.Value.Number == valueToLook).ToList();
-            var value = values.FirstOrDefault().Value.Output;
+            var values = outputs.Where(x => x.Number == valueToLook).ToList();
+            var value = values.FirstOrDefault().Output;
 
 
             //Assert
@@ -110,8 +110,8 @@ namespace SuperFizzBuzz.Tests
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(1, 6);
-            var multipleMatchesOutputs = outputs.Where(x => x.Value.Coincidences > 1).ToList();
-            var value = multipleMatchesOutputs.FirstOrDefault().Value.Output;
+            var multipleMatchesOutputs = outputs.Where(x => x.Coincidences > 1).ToList();
+            var value = multipleMatchesOutputs.FirstOrDefault().Output;
 
             //Assert
             Assert.Equal(expectedOutput, value);

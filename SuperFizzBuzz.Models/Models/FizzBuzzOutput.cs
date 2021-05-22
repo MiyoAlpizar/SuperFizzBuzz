@@ -23,5 +23,6 @@ namespace SuperFizzBuzz.Models.Models
         /// How many times coincides with the list of  MultipleOf FizzBuzz Property
         /// </summary>
         public int Coincidences { get; set; }
+        public object Value { get; set; }
     }
 }
