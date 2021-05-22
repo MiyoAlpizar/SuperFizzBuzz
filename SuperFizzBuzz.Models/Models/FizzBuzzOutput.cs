@@ -20,9 +20,9 @@ namespace SuperFizzBuzz.Models.Models
         public string Output { get; set; }
 
         /// <summary>
-        /// How many times coincides with the list of  MultipleOf FizzBuzz Property
+        /// How many times it coincides with the list of  MultipleOf FizzBuzz Property
         /// </summary>
         public int Coincidences { get; set; }
-        public object Value { get; set; }
+        
     }
 }
