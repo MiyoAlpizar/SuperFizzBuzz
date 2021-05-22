@@ -18,7 +18,7 @@ namespace SuperFizzBuzz.Advanced
             var startRange = -12;
             var endRange = 145;
 
-            //Lista of FizzBuzzes To Search for
+            //List of FizzBuzzes To Search for
             List<FizzBuzz> fizzBuzzes = new()
             {
                 new FizzBuzz { MultiplesOf = 3, Token = "Fizz" },
@@ -26,10 +26,10 @@ namespace SuperFizzBuzz.Advanced
                 new FizzBuzz { MultiplesOf = 38, Token = "Bazz" }
             };
 
-            //Init new instance with List of FizzBuzzess
+            //Init new instance of SuperFizzBuzz with List of FizzBuzzess
             SuperFizzBuzz superFizzBuzz = new(fizzBuzzes);
 
-            //Get Dictionary of FizzBuzzesOutputs
+            //Call FizzBuzz Logic And Get List of FizzBuzzesOutputs
             var outputs = superFizzBuzz.FizzBuzz(startRange, endRange);
             
             
@@ -40,8 +40,10 @@ namespace SuperFizzBuzz.Advanced
             }
             Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---\n");
 
-
+            //Filter Those FizzBuzz than coincides more than once
             var moreThanOnce = outputs.Where(x => x.Coincidences > 1);
+
+
             Console.WriteLine("--- Combination of Tokens that matches more than once ---");
             foreach (var item in moreThanOnce)
             {

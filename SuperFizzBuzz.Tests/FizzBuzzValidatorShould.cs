@@ -118,6 +118,26 @@ namespace SuperFizzBuzz.Tests
             Assert.Equal(exptectedCount, multipleMatchesOutputs.Count);
         }
 
+        [Theory]
+        [InlineData(10)]
+        [InlineData(1)]
+        [InlineData(0)]
+        public void ReturnSameCountOfMatchesAsRequired(int requiredMatches)
+        {
+            //Arrange
+            SuperFizzBuzz superFizzBuzz = new();
+            int[] numbers = new int[requiredMatches];
+            for (int i = 0; i < requiredMatches; i++)
+            {
+                numbers[i] = 3;
+            }
+            int expectedCount = requiredMatches;
+            //Act
+            var outputs = superFizzBuzz.FizzBuzz(numbers);
+            //Assert
+            Assert.Equal(expectedCount, outputs.Count);
+        }
+
         [Fact]
         public void RaiseErrorWhenMultiplesOfRepites()
         {

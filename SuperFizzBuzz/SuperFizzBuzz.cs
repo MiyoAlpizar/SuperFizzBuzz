@@ -15,7 +15,7 @@ namespace SuperFizzBuzz
         /// Initializes a new instance of SuperFizzBuzz.
         /// If null or empty, will take the default values. Fizz = 3 And Buzz = 5
         /// </summary>
-        /// <param name="fizzBuzzes">List of FizzBuzzes to search for</param> 
+        /// <param name="fizzBuzzes">List of FizzBuzzes to search for, add as many as you want</param> 
         public SuperFizzBuzz(List<FizzBuzz> fizzBuzzes = null)
         {
             if (fizzBuzzes?.Any() == true)
