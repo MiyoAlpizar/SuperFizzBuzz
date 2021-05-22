@@ -206,9 +206,13 @@ namespace SuperFizzBuzz
             int[] numbers = new int[max - min + 1];
 
             var j = 0;
+            
             for (int i = min; i <= max; i++)
             {
-                numbers[j] = min + j;
+                if (from < to)
+                    numbers[j] = from + j;
+                else
+                    numbers[j] = from - j;
                 j++;
             }
 
