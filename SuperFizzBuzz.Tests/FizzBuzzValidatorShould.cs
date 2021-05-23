@@ -13,15 +13,11 @@ namespace SuperFizzBuzz.Tests
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
-            int valueToLook = 3;
-            int rangeStart = 1;
-            int rangeEnd = valueToLook + 1;
-            int indexToLook = valueToLook - 1;
             string expectedOutput = "Fizz";
 
             //Act
-            var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs[indexToLook];
+            var outputs = superFizzBuzz.FizzBuzz(0, 3);
+            var value = outputs[3];
             
             
             //Assert
@@ -34,15 +30,11 @@ namespace SuperFizzBuzz.Tests
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
-            int valueToLook = 5;
-            int rangeStart = 1;
-            int rangeEnd = valueToLook + 1;
-            int indexToLook = valueToLook - 1;
             string expectedOutput = "Buzz";
 
             //Act
-            var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var value = outputs[indexToLook];
+            var outputs = superFizzBuzz.FizzBuzz(0, 5);
+            var value = outputs[5];
 
 
             //Assert
@@ -55,7 +47,7 @@ namespace SuperFizzBuzz.Tests
         [InlineData(0, 15)]
         [InlineData(-5, 8)]
         [InlineData(5, -35)]
-        public void ReturnInvertedOrderWithInvertedInputs(int from, int to)
+        public void ReturnInvertedOrderArrayWithInvertedInputs(int from, int to)
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
@@ -118,73 +110,29 @@ namespace SuperFizzBuzz.Tests
 
         }
 
-        [Theory]
-        [InlineData(5,"Wizz", new int[] {3,6,9})]
-        [InlineData(7, "Wizz", new int[] { 3, 6, 9 })]
-        [InlineData(-5, "Wizz", new int[] { 53, 16, 9 })]
-        [InlineData(1, "Wizz", new int[] { 113, -9, 19 })]
-        [InlineData(0, "Wizz", new int[] { 36, -15, 19 })]
-        [InlineData(0, "Wizz", new int[] { 362, 86, 19, 0 })]
-        public void ReturnExpectedMatchesWithCustomTokenCustomDivisorForCustomIntegerArray(int divisor, string token, int[] numbers)
+        [Fact]
+        public void ReturnFrogDuckChickenInNoSequencialIntegers()
         {
             //Arrange
             List<FizzBuzz> fizzBuzzes = new ()
             {
-                new FizzBuzz { Divisor = divisor, Token = token }
+                new FizzBuzz { Divisor = 4, Token = "Frog" },
+                new FizzBuzz { Divisor = 13, Token = "Duck" },
+                new FizzBuzz { Divisor = 9, Token = "Chicken" }
             };
 
             SuperFizzBuzz superFizzBuzz = new(fizzBuzzes);
-            var expectedMatches = 0;
-            foreach (var item in numbers)
-            {
-                if (divisor == 0)
-                {
-                    if (item == 0)
-                    {
-                        expectedMatches++;
-                    }
-                    continue;
-                }
-                if (item % divisor == 0)
-                {
-                    expectedMatches++;
-                }
-            }
+
+            var expectedOutput = new string[] { "Frog", "Duck", "Chicken", "FrogDuck", "FrogChicken", "FrogDuckChicken" };
+            
 
             //Act
-            var outputs = superFizzBuzz.FizzBuzz(numbers);
-            var matches = 0;
-            foreach (var item in outputs)
-            {
-                if (item == token)
-                {
-                    matches++;
-                }
-            }
-
+            var outputs = superFizzBuzz.FizzBuzz(new int[] {4,13,9,52,36,468});
+            
             //Assert
-            Assert.Equal(expectedMatches, matches);
+            Assert.Equal(expectedOutput, outputs);
         }
 
-        [Theory]
-        [InlineData(10)]
-        [InlineData(1)]
-        [InlineData(0)]
-        public void ReturnSameCountOfMatchesAsRequired(int requiredMatches)
-        {
-            //Arrange
-            SuperFizzBuzz superFizzBuzz = new();
-            int[] numbers = new int[requiredMatches];
-            for (int i = 0; i < requiredMatches; i++)
-            {
-                numbers[i] = 3;
-            }
-            int expectedCount = requiredMatches;
-            //Act
-            var outputs = superFizzBuzz.FizzBuzz(numbers);
-            //Assert
-            Assert.Equal(expectedCount, outputs.Length);
-        }
 
         [Fact]
         public void RaiseErrorWhenDivisorRepites()

@@ -104,14 +104,14 @@ namespace SuperFizzBuzz
         /// <summary>
         /// Adds new FizzBuzz to the current list
         /// </summary>
-        /// <param name="fizzBuzz">FizzBuzz to add to the list, if any of the MultiplesOf value or the Token repeats, 
+        /// <param name="fizzBuzz">FizzBuzz to add to the list, if any of the divisor value repeats, 
         /// it will throw an exception</param>
         public void AddFizzBuzz(FizzBuzz fizzBuzz)
         {
-            //We check if FizzBuzz is unique
+            //We check if FizzBuzz exists
             var exists = FizzBuzzes.Find(x => x.Equals(fizzBuzz)) != null;
 
-            //If is unique
+            //If does not exist
             if (!exists)
             {
                 FizzBuzzes.Add(fizzBuzz);
@@ -125,7 +125,7 @@ namespace SuperFizzBuzz
         /// <summary>
         ///  Sets new list with custom FizzBuzzes to search for
         /// </summary>
-        /// <param name="fizzBuzzes">List of FizzBuzz to set, if any of the MultiplesOf value or the Token repeats, 
+        /// <param name="fizzBuzzes">List of FizzBuzz to set, if any of the Divisor value repeats, 
         /// it will throw an exception</param>
         public void SetFizzBuzzes(List<FizzBuzz> fizzBuzzes)
         {
@@ -157,15 +157,14 @@ namespace SuperFizzBuzz
         /// <summary>
         /// FizzBuzzes any integer array
         /// </summary>
-        /// <param name="arrayNumbers">Integer Array to FizzBuzz</param>
-        /// <param name="fizzBuzzes">List of FizzBuzz Tokens to Evaluate</param>
+        /// <param name="numbers">Integer Array to FizzBuzz</param>
         /// <returns>string[]</returns>
         private string[] FizzBuzzArray(int[] numbers)
         {
 
             string[] outputs = new string[numbers.Length];
             
-            //If FizzBuzzes to search for is null or empty, we asign the default values
+            //If List of FizzBuzzes to search for is null or empty, we asign the default values
             if (FizzBuzzes?.Any() != true)
             {
                 FizzBuzzes = FizzBuzzTokens.DefaultFizzBuzzes;
@@ -179,16 +178,16 @@ namespace SuperFizzBuzz
 
                 //String to storage and accumulate the tokens found in the residuals of multiplesOf
                 var FizzBuzz = "";
-                //How many times the same number coincides with diffent multiplesOf
+                //How many times the same number coincides with diffent divisors
                 var coincidences = 0;
                 
                 //We loop for the list of FizzBuzz to find matches
                 foreach (var item in FizzBuzzes)
                 {
-                    //We can´t divide by 0, so in case of multipleOf is 0, we do some check and then continue
+                    //We can´t divide by 0, so in case of divisor is 0, we do some check and then continue
                     if (item.Divisor == 0)
                     {
-                        //If number and multipleOf is 0, we FizzBuzz 0 
+                        //If number and divisor is 0, tecniclly 0 is resiudual in mod 0 , we FizzBuzz 0 
                         if (number == 0) {
                             FizzBuzz += item.Token;
                             coincidences++;
