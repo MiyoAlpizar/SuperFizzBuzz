@@ -55,7 +55,7 @@ namespace SuperFizzBuzz.Tests
         [InlineData(0, 15)]
         [InlineData(-5, 8)]
         [InlineData(5, -35)]
-        public void ReturnDifferentOrderWithInvertedInput(int from, int to)
+        public void ReturnInvertedOrderWithInvertedInputs(int from, int to)
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
@@ -118,6 +118,53 @@ namespace SuperFizzBuzz.Tests
 
         }
 
+        [Theory]
+        [InlineData(5,"Wizz", new int[] {3,6,9})]
+        [InlineData(7, "Wizz", new int[] { 3, 6, 9 })]
+        [InlineData(-5, "Wizz", new int[] { 53, 16, 9 })]
+        [InlineData(1, "Wizz", new int[] { 113, -9, 19 })]
+        [InlineData(0, "Wizz", new int[] { 36, -15, 19 })]
+        [InlineData(0, "Wizz", new int[] { 362, 86, 19, 0 })]
+        public void ReturnExpectedMatchesWithCustomTokenCustomDivisorForCustomIntegerArray(int divisor, string token, int[] numbers)
+        {
+            //Arrange
+            List<FizzBuzz> fizzBuzzes = new ()
+            {
+                new FizzBuzz { Divisor = divisor, Token = token }
+            };
+
+            SuperFizzBuzz superFizzBuzz = new(fizzBuzzes);
+            var expectedMatches = 0;
+            foreach (var item in numbers)
+            {
+                if (divisor == 0)
+                {
+                    if (item == 0)
+                    {
+                        expectedMatches++;
+                    }
+                    continue;
+                }
+                if (item % divisor == 0)
+                {
+                    expectedMatches++;
+                }
+            }
+
+            //Act
+            var outputs = superFizzBuzz.FizzBuzz(numbers);
+            var matches = 0;
+            foreach (var item in outputs)
+            {
+                if (item == token)
+                {
+                    matches++;
+                }
+            }
+
+            //Assert
+            Assert.Equal(expectedMatches, matches);
+        }
 
         [Theory]
         [InlineData(10)]
