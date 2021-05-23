@@ -10,7 +10,7 @@ namespace SuperFizzBuzz.Clasic
             var outputs = superFizzBuzz.FizzBuzz();
             foreach (var item in outputs)
             {
-                Console.WriteLine(item.Output);
+                Console.WriteLine(item);
             }
         }
     }

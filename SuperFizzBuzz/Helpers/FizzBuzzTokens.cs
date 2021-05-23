@@ -16,8 +16,8 @@ namespace SuperFizzBuzz
         /// Default Values 
         /// </summary>
         private static readonly List<FizzBuzz> _DefaultFizzBuzzes = new List<FizzBuzz>() { 
-             new FizzBuzz { Token = Constants.FIZZ, MultiplesOf = 3},
-             new FizzBuzz { Token = Constants.BUZZ, MultiplesOf = 5},
+             new FizzBuzz { Token = Constants.FIZZ, Divisor = 3},
+             new FizzBuzz { Token = Constants.BUZZ, Divisor = 5},
         };
 
         /// <summary>

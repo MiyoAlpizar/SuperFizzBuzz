@@ -26,17 +26,16 @@ namespace SuperFizzBuzz.Models.Models
         /// <summary>
         /// Number to search Multiples Of
         /// </summary>
-        public int MultiplesOf { get; set; }
-
+        public int Divisor { get; set; }
 
         /// <summary>
-        /// We make shure to avoid repited numbers or tokens, in order to make sense
+        /// We make shure to avoid repited divisors, in order to make sense
         /// </summary>
         /// <param name="other">FizzBuzz to compare with</param>
-        /// <returns></returns>
+        /// <returns>bool</returns>
         public bool Equals(FizzBuzz other)
         {
-            return MultiplesOf == other.MultiplesOf || Token.Trim().ToLower() == other.Token.Trim().ToLower();
+            return Divisor == other.Divisor;
         }       
     }
 }

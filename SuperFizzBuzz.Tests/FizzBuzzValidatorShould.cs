@@ -9,7 +9,7 @@ namespace SuperFizzBuzz.Tests
     public class FizzBuzzValidatorShould
     {
         [Fact]
-        public void ReturnOneOutputWithFizzWhen3()
+        public void ReturnFizzWhen3()
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
@@ -17,23 +17,20 @@ namespace SuperFizzBuzz.Tests
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
             int indexToLook = valueToLook - 1;
-            int expectedCount = 1;
             string expectedOutput = "Fizz";
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var values = outputs.Where(x => x.Number == valueToLook).ToList();
-            var value = values.FirstOrDefault().Output;
+            var value = outputs[indexToLook];
             
             
             //Assert
-            Assert.Equal(expectedCount, values.Count);
-            Assert.Equal(expectedOutput, value);
+           Assert.Equal(expectedOutput, value);
 
         }
 
         [Fact]
-        public void ReturnOneOutputWithBuzzWhen5()
+        public void ReturnBuzzWhen5()
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
@@ -41,82 +38,86 @@ namespace SuperFizzBuzz.Tests
             int rangeStart = 1;
             int rangeEnd = valueToLook + 1;
             int indexToLook = valueToLook - 1;
-            int expectedCount = 1;
             string expectedOutput = "Buzz";
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var values = outputs.Where(x => x.Number == valueToLook).ToList();
-            var value = values.FirstOrDefault().Output;
+            var value = outputs[indexToLook];
 
 
             //Assert
-            Assert.Equal(expectedCount, values.Count);
             Assert.Equal(expectedOutput, value);
 
         }
 
         [Theory]
-        [InlineData(7,"Fuzz")]
-        [InlineData(2,"Wazz")]
-        [InlineData(154, "Zass")]
-        [InlineData(-15, "Wozz")]
+        [InlineData(-12, -35)]
+        [InlineData(0, 15)]
+        [InlineData(-5, 8)]
+        [InlineData(5, -35)]
+        public void ReturnDifferentOrderWithInvertedInput(int from, int to)
+        {
+            //Arrange
+            SuperFizzBuzz superFizzBuzz = new();
+
+            int expectedFirstValueA = from;
+            int expectedLastValueA = to;
+
+            int expectedFirstValueB = to;
+            int expectedLastValueB = from;
+
+            //Act
+            var outputsA = superFizzBuzz.CreateNumberArray(from, to);
+            var outputsB = superFizzBuzz.CreateNumberArray(to, from);
+
+            //Assert
+            Assert.Equal(expectedFirstValueA, outputsA[0]);
+            Assert.Equal(expectedLastValueA, outputsA[^1]);
+
+            Assert.Equal(expectedFirstValueB, outputsB[0]);
+            Assert.Equal(expectedLastValueB, outputsB[^1]);
+
+        }
+
+        [Theory]
+        [InlineData(-16, "Fuzz")]
+        [InlineData(25, "Wazz")]
+        [InlineData(65, "Zass")]
+        [InlineData(-2, "Wozz")]
         [InlineData(0, "Jazz")]
         [InlineData(-1, "")]
-        [InlineData(1000, "Doug")]
-        public void ReturnCustomTokenWithCustomMultipleOf(int multipleOf, string token)
+        [InlineData(89, "Doug")]
+        public void ReturnCustomTokenWithCustomDivisor(int divisor, string token)
         {
             //Arrange
             var listFizzBuzzes = new List<FizzBuzz>() {
-                new FizzBuzz { MultiplesOf = multipleOf, Token = token}
+                new FizzBuzz { Divisor = divisor, Token = token}
             };
 
             SuperFizzBuzz superFizzBuzz = new(listFizzBuzzes);
 
-            int valueToLook = multipleOf;
+            int valueToLook = divisor;
 
             //We make sure the start range is smaller than multipleOf 
-            int rangeStart = Math.Min(0, multipleOf);
+            int rangeStart = Math.Min(0, divisor);
 
             //We make sure the end range is greater than multipleOf 
-            int rangeEnd = multipleOf + 1;
-            
-            int exptectedCount = 1;
+            int rangeEnd = divisor + 1;
+
             string expectedOutput = token;
+
+            int indexToLook = divisor > 0 ? valueToLook  : 0;
 
             //Act
             var outputs = superFizzBuzz.FizzBuzz(rangeStart, rangeEnd);
-            var values = outputs.Where(x => x.Number == valueToLook).ToList();
-            var value = values.FirstOrDefault().Output;
+            var value = outputs[indexToLook];
 
 
             //Assert
-            Assert.Equal(exptectedCount, values.Count);
-            Assert.Equal(expectedOutput, value);
+           Assert.Equal(expectedOutput, value);
 
         }
 
-        [Fact]
-        public void ReturnOneTokenWithMultipleMatches()
-        {
-            //Arrange
-            var listFizzBuzzes = new List<FizzBuzz>() {
-                new FizzBuzz { MultiplesOf = 3, Token = "Cat"},
-                new FizzBuzz { MultiplesOf = 6, Token = "Dog"}
-            };
-            SuperFizzBuzz superFizzBuzz = new(listFizzBuzzes);
-            int exptectedCount = 1;
-            string expectedOutput = "CatDog";
-
-            //Act
-            var outputs = superFizzBuzz.FizzBuzz(1, 6);
-            var multipleMatchesOutputs = outputs.Where(x => x.Coincidences > 1).ToList();
-            var value = multipleMatchesOutputs.FirstOrDefault().Output;
-
-            //Assert
-            Assert.Equal(expectedOutput, value);
-            Assert.Equal(exptectedCount, multipleMatchesOutputs.Count);
-        }
 
         [Theory]
         [InlineData(10)]
@@ -135,18 +136,18 @@ namespace SuperFizzBuzz.Tests
             //Act
             var outputs = superFizzBuzz.FizzBuzz(numbers);
             //Assert
-            Assert.Equal(expectedCount, outputs.Count);
+            Assert.Equal(expectedCount, outputs.Length);
         }
 
         [Fact]
-        public void RaiseErrorWhenMultiplesOfRepites()
+        public void RaiseErrorWhenDivisorRepites()
         {
             //Arrange
             SuperFizzBuzz superFizzBuzz = new();
             List<FizzBuzz> fizzBuzzes = new()
             {
-                new FizzBuzz { MultiplesOf = 14, Token = "Duck" },
-                new FizzBuzz { MultiplesOf = 14, Token = "Cat" }
+                new FizzBuzz { Divisor = 14, Token = "Duck" },
+                new FizzBuzz { Divisor = 14, Token = "Cat" }
             };
             //Act
 
@@ -154,20 +155,6 @@ namespace SuperFizzBuzz.Tests
             Assert.Throws<Exception>(() => superFizzBuzz.SetFizzBuzzes(fizzBuzzes));
         }
 
-        [Fact]
-        public void RaiseErrorWhenTokenRepites()
-        {
-            //Arrange
-            SuperFizzBuzz superFizzBuzz = new();
-            List<FizzBuzz> fizzBuzzes = new()
-            {
-                new FizzBuzz { MultiplesOf = 84, Token = "Dog" },
-                new FizzBuzz { MultiplesOf = 12, Token = "Dog" }
-            };
-            //Act
-
-            //Assert
-            Assert.Throws<Exception>(() => superFizzBuzz.SetFizzBuzzes(fizzBuzzes));
-        }
+        
     }
 }

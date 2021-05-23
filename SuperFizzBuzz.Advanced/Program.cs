@@ -11,46 +11,23 @@ namespace SuperFizzBuzz.Advanced
         {
             MakeFizzBuzz();
         }
-
-        
         static void MakeFizzBuzz()
         {
             var startRange = -12;
             var endRange = 145;
-
-            //List of FizzBuzzes To Search for
             List<FizzBuzz> fizzBuzzes = new()
             {
-                new FizzBuzz { MultiplesOf = 3, Token = "Fizz" },
-                new FizzBuzz { MultiplesOf = 7, Token = "Buzz" },
-                new FizzBuzz { MultiplesOf = 38, Token = "Bazz" }
+                new FizzBuzz { Divisor = 3, Token = "Fizz" },
+                new FizzBuzz { Divisor = 7, Token = "Buzz" },
+                new FizzBuzz { Divisor = 38, Token = "Bazz" }
             };
-
-            //Init new instance of SuperFizzBuzz with List of FizzBuzzess
             SuperFizzBuzz superFizzBuzz = new(fizzBuzzes);
-
-            //Call FizzBuzz Logic And Get List of FizzBuzzesOutputs
             var outputs = superFizzBuzz.FizzBuzz(startRange, endRange);
-            
-            
-            Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---");
             foreach (var item in outputs)
             {
-                Console.WriteLine(item.Output);
+                Console.WriteLine(item);
             }
-            Console.WriteLine($"--- Numbers to {startRange} to {endRange} ---\n");
-
-            //Filter Those FizzBuzz than coincides more than once
-            var moreThanOnce = outputs.Where(x => x.Coincidences > 1);
-
-
-            Console.WriteLine("--- Combination of Tokens that matches more than once ---");
-            foreach (var item in moreThanOnce)
-            {
-                Console.WriteLine($"{item.Number} {item.Output}");
-            }
-            Console.WriteLine("--- Combination of Tokens that matches more than once ---");
-
+         
         }
     }
 }

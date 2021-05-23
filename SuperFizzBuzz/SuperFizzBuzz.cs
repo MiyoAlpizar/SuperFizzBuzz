@@ -37,8 +37,8 @@ namespace SuperFizzBuzz
         /// <summary>
         /// FizzBuzzes the default array numbers from 1 to 100
         /// </summary>
-        /// <returns>List of FizzBuzzOutput</returns>
-        public List<FizzBuzzOutput> FizzBuzz()
+        /// <returns>string[]</returns>
+        public string[] FizzBuzz()
         {
             var numbersToFizzBuzz = CreateNumberArray(1, 100);
             return FizzBuzzArray(numbersToFizzBuzz);
@@ -49,8 +49,8 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="from">Number range to start</param>
         /// <param name="to">Number range to end</param>
-        /// <returns>List of FizzBuzzOutput</returns>
-        public List<FizzBuzzOutput> FizzBuzz(int from, int to)
+        /// <returns>string[]</returns>
+        public string[] FizzBuzz(int from, int to)
         {
             var numberToFizzBuzz = CreateNumberArray(from, to);
             return FizzBuzzArray(numberToFizzBuzz);
@@ -61,11 +61,43 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="numbers">Integer array to FizzBuzz</param>
         /// <param name="fizzBuzzes">List of FizzBuzz to search for, if null default values are  Fizz = 3 And Buzz = 5</param> 
-        /// <returns>List of FizzBuzzOutput</returns>
-        public List<FizzBuzzOutput> FizzBuzz(int[] numbers)
+        /// <returns>string[]</returns>
+        public string[] FizzBuzz(int[] numbers)
         {
            return FizzBuzzArray(numbers);
         }
+
+        /// <summary>
+        /// Creates an integer array
+        /// </summary>
+        /// <param name="from">Value to start</param>
+        /// <param name="to">Value to end</param>
+        /// <returns>int[]</returns>
+        public int[] CreateNumberArray(int from, int to)
+        {
+            //Gets the maximum number
+            var max = Math.Max(from, to);
+
+            //Gets the minimun number
+            var min = Math.Min(from, to);
+
+            //Sets the lenght of the array
+            int[] numbers = new int[max - min + 1];
+
+            var j = 0;
+
+            for (int i = min; i <= max; i++)
+            {
+                if (from < to)
+                    numbers[j] = from + j;
+                else
+                    numbers[j] = from - j;
+                j++;
+            }
+
+            return numbers;
+        }
+
         #endregion
 
         #region Set FizzBuzz Methods
@@ -127,11 +159,11 @@ namespace SuperFizzBuzz
         /// </summary>
         /// <param name="arrayNumbers">Integer Array to FizzBuzz</param>
         /// <param name="fizzBuzzes">List of FizzBuzz Tokens to Evaluate</param>
-        /// <returns>List of FizzBuzzOutput</returns>
-        private List<FizzBuzzOutput> FizzBuzzArray(int[] numbers)
+        /// <returns>string[]</returns>
+        private string[] FizzBuzzArray(int[] numbers)
         {
 
-            List<FizzBuzzOutput> outputs = new List<FizzBuzzOutput>();
+            string[] outputs = new string[numbers.Length];
             
             //If FizzBuzzes to search for is null or empty, we asign the default values
             if (FizzBuzzes?.Any() != true)
@@ -153,22 +185,22 @@ namespace SuperFizzBuzz
                 //We loop for the list of FizzBuzz to find matches
                 foreach (var item in FizzBuzzes)
                 {
-                    //We can´t divide by 0, so in case of multipleOf is 0, we do some check and then break
-                    if (item.MultiplesOf == 0)
+                    //We can´t divide by 0, so in case of multipleOf is 0, we do some check and then continue
+                    if (item.Divisor == 0)
                     {
                         //If number and multipleOf is 0, we FizzBuzz 0 
                         if (number == 0) {
                             FizzBuzz += item.Token;
                             coincidences++;
                         }
-                        break;
+                        continue;
                     }
 
                     //We can´t divide by 0, so in case of 0, we break
                     if (number == 0) break;
 
                     //If residual is 0, we just found a token to show instade of the number
-                    if (number % item.MultiplesOf == 0)
+                    if (number % item.Divisor == 0)
                     {
                         FizzBuzz += item.Token;
                         coincidences++;
@@ -181,43 +213,12 @@ namespace SuperFizzBuzz
                 else
                     FizzBuzzOrNumber = FizzBuzz;
 
-                outputs.Add(new FizzBuzzOutput { Output = FizzBuzzOrNumber, Coincidences = coincidences, Number = number });
+                outputs[i] = FizzBuzzOrNumber;
 
             }
             #endregion
 
             return outputs;
-        }
-
-        /// <summary>
-        /// Creates an integer array
-        /// </summary>
-        /// <param name="from">Value to start</param>
-        /// <param name="to">Value to end</param>
-        /// <returns>int[]</returns>
-        private int[] CreateNumberArray(int from, int to)
-        {
-            //Gets the maximum number
-            var max = Math.Max(from, to);
-
-            //Gets the minimun number
-            var min = Math.Min(from, to);
-
-            //Sets the lenght of the array
-            int[] numbers = new int[max - min + 1];
-
-            var j = 0;
-            
-            for (int i = min; i <= max; i++)
-            {
-                if (from < to)
-                    numbers[j] = from + j;
-                else
-                    numbers[j] = from - j;
-                j++;
-            }
-
-            return numbers;
         }
         #endregion
     }
